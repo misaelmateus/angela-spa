@@ -11,10 +11,15 @@ const nextConfig = {
     ],
   },
   async rewrites() {
+    const backendApi = process.env.NEXT_PUBLIC_BACKEND_API;
+    // Only add rewrite if backend API is configured
+    if (!backendApi) {
+      return [];
+    }
     return [
       {
         source: '/api/backend/:path*',
-        destination: `${process.env.NEXT_PUBLIC_BACKEND_API}/:path*`,
+        destination: `${backendApi}/:path*`,
       },
     ];
   },
