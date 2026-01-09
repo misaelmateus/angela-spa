@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { tracker } from './tracker';
-import type { EventType } from '@angela/shared';
+import type { EventType } from './types';
 
 /**
  * Hook to use analytics tracker

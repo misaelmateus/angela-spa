@@ -1,5 +1,5 @@
 import { getOrCreateSessionId, parseUserAgent } from './fingerprint';
-import type { TrackEventParams, EventType } from '@angela/shared';
+import type { TrackEventParams, EventType } from './types';
 
 /**
  * Analytics Tracker
