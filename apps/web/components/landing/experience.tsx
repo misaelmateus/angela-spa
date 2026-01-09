@@ -62,7 +62,7 @@ const experienceFeatures = [
 
 export function Experience() {
   return (
-    <Section background="white">
+    <Section background="white" id="experiencia">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         {/* Content Side - Left on Desktop */}
         <div className="space-y-6 lg:order-1">

@@ -133,8 +133,8 @@ export function Hero({
             <button
               className="text-white/90 hover:text-white text-sm font-medium flex items-center gap-2 transition-all duration-300 hover:gap-3 group"
               onClick={() => {
-                const sobreSection = document.getElementById('sobre');
-                sobreSection?.scrollIntoView({ behavior: 'smooth' });
+                const experienciaSection = document.getElementById('experiencia');
+                experienciaSection?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
               Saiba Mais
