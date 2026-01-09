@@ -99,8 +99,8 @@ export function Contact() {
         <div className="space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {contactInfo.map((info, index) => (
-              <Card key={index} className="border-beige shadow-md hover:shadow-lg transition-shadow">
-                <CardContent className="p-6 md:p-8">
+              <Card key={index} className="border-2 border-sage/20 shadow-lg hover:shadow-xl transition-all bg-white">
+                <CardContent className="p-8 md:p-10">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sage/10 flex items-center justify-center text-sage">
                       {info.icon}
