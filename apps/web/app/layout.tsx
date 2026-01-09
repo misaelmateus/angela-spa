@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import { Montserrat } from 'next/font/google';
-import localFont from 'next/font/local';
+import { Montserrat, Dancing_Script, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { Providers } from '@/components/providers';
 
@@ -10,10 +9,19 @@ const montserrat = Montserrat({
   display: 'swap',
 });
 
-const audrey = localFont({
-  src: '../public/fonts/audrey.woff2',
+// Temporary: Using Dancing Script until Audrey font is added
+const audrey = Dancing_Script({
+  subsets: ['latin'],
   variable: '--font-audrey',
   display: 'swap',
+});
+
+// Premium serif font for titles - Quiet Luxury aesthetic
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -74,7 +82,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${montserrat.variable} ${audrey.variable}`}>
+    <html lang="pt-BR" className={`${montserrat.variable} ${audrey.variable} ${playfair.variable}`}>
       <body className="font-sans antialiased">
         <Providers>{children}</Providers>
       </body>

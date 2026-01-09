@@ -226,6 +226,7 @@ export default function DeepilacaoLaser() {
         serviceInterest="Depilação a Laser"
         backgroundImage="/images/hero/laser-hero.jpg"
         imageAlt="Depilação a Laser - Angela Spa & Estética"
+        overlay="none"
       />
 
       <Benefits

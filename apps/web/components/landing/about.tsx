@@ -5,11 +5,11 @@ import { Badge } from '@/components/ui/badge';
 import { WhatsAppButton } from '@/components/whatsapp-button';
 
 const credentials = [
-  'Anos de Experiência no Mercado',
+  'Mais de 40 Anos de Experiência',
   'Profissionais Certificados',
   'Equipamentos de Última Geração',
   'Atendimento Personalizado',
-  'Ambiente Acolhedor e Moderno',
+  'Ambientes Exclusivos para Público Masculino',
   'Protocolos de Segurança Rigorosos',
 ];
 
@@ -21,8 +21,8 @@ export function About() {
         <div className="relative">
           <div className="relative h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
             <Image
-              src="/images/reception/main.jpg"
-              alt="Recepção Angela Spa & Estética"
+              src="/images/reception/receptionist.jpg"
+              alt="Recepcionista Angela Spa & Estética - Atendimento Acolhedor"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -30,10 +30,10 @@ export function About() {
           </div>
 
           {/* Floating Badge */}
-          <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-2xl p-6 max-w-[200px]">
+          <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-2xl p-6 max-w-[200px] transition-transform hover:scale-105 duration-300">
             <div className="text-center">
-              <div className="text-4xl font-bold text-sage mb-2">500+</div>
-              <div className="text-sm text-gray-600">
+              <div className="text-4xl font-serif font-bold text-sage mb-2">1000+</div>
+              <div className="text-sm text-gray-600 font-medium">
                 Clientes Satisfeitas
               </div>
             </div>
@@ -46,20 +46,14 @@ export function About() {
             <Badge variant="beige" className="mb-4">
               Sobre Nós
             </Badge>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-sage mb-4">
-              Sua Beleza Natural em Mãos Especializadas
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-sage mb-4 leading-tight">
+              Mais de 40 Anos de História e Excelência
             </h2>
             <p className="text-lg text-gray-600 mb-6">
-              Na Angela Spa & Estética, acreditamos que cada pessoa possui uma
-              beleza única que merece ser realçada com cuidado e atenção
-              profissional.
+              Com mais de 40 anos de história, o Angela Spa & Estética é referência em estética facial, corporal e bem-estar em Goiânia, no Setor Bueno. Unimos tradição, tecnologia e atendimento acolhedor para oferecer tratamentos modernos, seguros e totalmente personalizados.
             </p>
             <p className="text-gray-600 mb-6">
-              Nossa clínica oferece uma experiência completa de bem-estar,
-              combinando tecnologia de ponta com o toque humano de profissionais
-              altamente qualificados. Cada tratamento é personalizado para atender
-              às suas necessidades específicas, garantindo resultados visíveis e
-              duradouros.
+              Nosso espaço foi pensado para proporcionar leveza e autocuidado — desde protocolos avançados para pele e corpo até ambientes exclusivos dedicados ao público masculino. Cada detalhe é planejado para que você viva uma experiência completa de relaxamento, cuidado e valorização da sua melhor versão.
             </p>
           </div>
 

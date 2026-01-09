@@ -27,7 +27,9 @@ export async function POST(request: NextRequest) {
     });
 
     if (!response.ok) {
-      throw new Error('Backend request failed');
+      const errorText = await response.text();
+      console.error('Backend response:', response.status, errorText);
+      throw new Error(`Backend request failed: ${response.status} - ${errorText}`);
     }
 
     const data = await response.json();

@@ -22,7 +22,7 @@ const contactInfo = [
     ),
     title: 'Telefone',
     value: '(62) 98126-0247',
-    link: 'https://wa.me/5562981260247',
+    link: 'tel:+5562981260247',
   },
   {
     icon: (
@@ -47,8 +47,8 @@ const contactInfo = [
       </svg>
     ),
     title: 'Endereço',
-    value: 'Setor Bueno, Goiânia - GO',
-    link: null,
+    value: 'R. T-53, 1185 - St. Bueno\nGoiânia - GO, 74215-030',
+    link: 'https://www.google.com/maps/place/Angela+Spa+%26+Est%C3%A9tica/@-16.7068318,-49.2572795,17z',
   },
   {
     icon: (
@@ -67,7 +67,7 @@ const contactInfo = [
       </svg>
     ),
     title: 'Horário',
-    value: 'Seg - Sex: 9h às 19h\nSáb: 9h às 14h',
+    value: 'Seg - Sex: 07:30 - 20:00\nSábado: 07:30 - 14:00',
     link: null,
   },
   {
@@ -81,8 +81,8 @@ const contactInfo = [
       </svg>
     ),
     title: 'Instagram',
-    value: '@angelaspa',
-    link: 'https://instagram.com/angelaspa',
+    value: '@angelacentrodeestetica',
+    link: 'https://instagram.com/angelacentrodeestetica',
   },
 ];
 
@@ -100,13 +100,13 @@ export function Contact() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {contactInfo.map((info, index) => (
               <Card key={index} className="border-beige-light">
-                <CardContent className="p-6">
+                <CardContent className="p-6 md:p-8">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sage/10 flex items-center justify-center text-sage">
                       {info.icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold text-gray-900 mb-1">
+                      <div className="text-sm font-semibold text-gray-900 mb-2">
                         {info.title}
                       </div>
                       {info.link ? (
@@ -114,12 +114,12 @@ export function Contact() {
                           href={info.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-sage hover:text-sage/80 transition-colors whitespace-pre-line"
+                          className="text-sm text-sage hover:text-sage/80 transition-colors whitespace-pre-line leading-relaxed"
                         >
                           {info.value}
                         </a>
                       ) : (
-                        <div className="text-sm text-gray-600 whitespace-pre-line">
+                        <div className="text-sm text-gray-600 whitespace-pre-line leading-relaxed">
                           {info.value}
                         </div>
                       )}
@@ -132,11 +132,11 @@ export function Contact() {
 
           {/* CTA */}
           <Card className="bg-gradient-to-br from-sage to-sage/80 border-none text-white">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-3">
+            <CardContent className="p-8 md:p-10">
+              <h3 className="text-2xl font-serif font-bold mb-4">
                 Pronta para Transformar sua Beleza?
               </h3>
-              <p className="text-white/90 mb-6">
+              <p className="text-white/90 mb-6 leading-relaxed">
                 Agende uma avaliação gratuita e conheça nossos tratamentos
                 personalizados.
               </p>
@@ -155,61 +155,15 @@ export function Contact() {
         {/* Map */}
         <div className="relative">
           <Card className="border-beige-light overflow-hidden h-full min-h-[400px]">
-            <div className="relative w-full h-full">
-              {/* Placeholder for Google Maps */}
-              <div className="absolute inset-0 bg-gradient-to-br from-beige-light to-beige flex items-center justify-center">
-                <div className="text-center p-8">
-                  <svg
-                    className="w-16 h-16 text-sage mx-auto mb-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                  <h3 className="text-xl font-semibold text-sage mb-2">
-                    Setor Bueno
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    Localização privilegiada em Goiânia
-                  </p>
-                  <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sage hover:text-sage/80 font-medium transition-colors"
-                  >
-                    Abrir no Google Maps
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-              {/* Google Maps iframe would go here */}
-              {/* <iframe ... /> */}
-            </div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31316477.533162016!2d-84.18194849288246!3d-16.63619187839765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef13a854ce309%3A0x7125e1a08101d3!2sAngela%20Spa%20%26%20Est%C3%A9tica!5e0!3m2!1spt-BR!2sbr!4v1767979481098!5m2!1spt-BR!2sbr"
+              width="100%"
+              height="450"
+              style={{ border: 0, minHeight: '400px', height: '100%' }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </Card>
         </div>
       </div>

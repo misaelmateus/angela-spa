@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Container } from '@/components/ui/container';
 import { WhatsAppButton } from '@/components/whatsapp-button';
 
@@ -23,7 +24,7 @@ const navigation = {
 const socialMedia = [
   {
     name: 'Instagram',
-    href: 'https://instagram.com/angelaspa',
+    href: 'https://instagram.com/angelacentrodeestetica',
     icon: (props: React.SVGProps<SVGSVGElement>) => (
       <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
         <path
@@ -36,7 +37,7 @@ const socialMedia = [
   },
   {
     name: 'Facebook',
-    href: 'https://facebook.com/angelaspa',
+    href: 'https://facebook.com/angelacentrodeestetica',
     icon: (props: React.SVGProps<SVGSVGElement>) => (
       <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
         <path
@@ -60,16 +61,18 @@ export function Footer() {
             {/* Brand */}
             <div className="space-y-4">
               <Link href="/" className="inline-block">
-                <div className="flex flex-col">
-                  <span className="text-3xl font-script text-sage">Angela</span>
-                  <span className="text-sm text-gray-600 -mt-1">
-                    Spa & Estética
-                  </span>
+                <div className="relative h-16 w-48">
+                  <Image
+                    src="/images/logos/logo-primary-transparent.png"
+                    alt="Angela Spa & Estética"
+                    fill
+                    className="object-contain object-left"
+                    sizes="192px"
+                  />
                 </div>
               </Link>
               <p className="text-sm text-gray-600 max-w-xs">
-                Sua beleza natural em mãos especializadas. Clínica de estética
-                completa em Goiânia.
+                Mais de 40 anos de história e excelência em estética facial, corporal e bem-estar em Goiânia.
               </p>
               <div className="flex space-x-4">
                 {socialMedia.map((item) => (
@@ -141,8 +144,11 @@ export function Footer() {
                     (62) 98126-0247
                   </a>
                 </li>
-                <li>Setor Bueno</li>
-                <li>Goiânia, GO</li>
+                <li>R. T-53, 1185 - St. Bueno</li>
+                <li>Goiânia - GO, 74215-030</li>
+                <li className="text-xs mt-2">
+                  Seg-Sex: 07:30-20:00 | Sáb: 07:30-14:00
+                </li>
                 <li className="pt-2">
                   <WhatsAppButton size="sm" className="w-full">
                     Fale Conosco

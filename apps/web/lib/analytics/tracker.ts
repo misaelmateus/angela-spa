@@ -68,13 +68,22 @@ class AnalyticsTracker {
     };
 
     try {
-      await fetch('/api/track/session', {
+      const response = await fetch('/api/track/session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(sessionData),
       });
+
+      if (!response.ok) {
+        const error = await response.text();
+        throw new Error(`Session creation failed: ${error}`);
+      }
+
+      console.log('Session created successfully:', this.sessionId);
     } catch (error) {
       console.error('Failed to create session:', error);
+      // Rethrow to prevent tracker from initializing if session creation fails
+      throw error;
     }
   }
 
@@ -242,7 +251,14 @@ class AnalyticsTracker {
 // Export singleton instance
 export const tracker = new AnalyticsTracker();
 
-// Auto-initialize on import (client-side only)
+// Auto-initialize on import (client-side only, after hydration)
 if (typeof window !== 'undefined') {
-  tracker.init().catch(console.error);
+  // Wait for React hydration to complete before initializing
+  if (document.readyState === 'complete') {
+    tracker.init().catch(console.error);
+  } else {
+    window.addEventListener('load', () => {
+      tracker.init().catch(console.error);
+    });
+  }
 }

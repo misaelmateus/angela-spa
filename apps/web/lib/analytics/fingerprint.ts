@@ -93,8 +93,13 @@ export async function getOrCreateSessionId(): Promise<string> {
       const timestamp = parseInt(storedTimestamp, 10);
       const now = Date.now();
 
+      // If session ID is too long (old format), invalidate it
+      if (storedSessionId.length > 64) {
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(STORAGE_TIMESTAMP_KEY);
+      }
       // If session is still valid (within 30 minutes)
-      if (now - timestamp < SESSION_TIMEOUT) {
+      else if (now - timestamp < SESSION_TIMEOUT) {
         // Update timestamp
         localStorage.setItem(STORAGE_TIMESTAMP_KEY, String(now));
         return storedSessionId;
@@ -104,7 +109,9 @@ export async function getOrCreateSessionId(): Promise<string> {
     // Generate new session ID
     const fingerprint = await generateFingerprint();
     const timestamp = Date.now();
-    const sessionId = `${fingerprint}-${timestamp}`;
+    // Use first 48 chars of fingerprint + short timestamp to stay under 64 char limit
+    const shortTimestamp = timestamp.toString(36); // Base36 is shorter
+    const sessionId = `${fingerprint.substring(0, 48)}-${shortTimestamp}`;
 
     // Store in localStorage
     localStorage.setItem(STORAGE_KEY, sessionId);
@@ -115,7 +122,8 @@ export async function getOrCreateSessionId(): Promise<string> {
     // If localStorage is not available, use in-memory session
     console.warn('localStorage not available, using in-memory session');
     const fingerprint = await generateFingerprint();
-    return `${fingerprint}-${Date.now()}`;
+    const shortTimestamp = Date.now().toString(36);
+    return `${fingerprint.substring(0, 48)}-${shortTimestamp}`;
   }
 }
 

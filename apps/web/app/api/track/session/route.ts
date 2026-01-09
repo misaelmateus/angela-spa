@@ -7,6 +7,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    console.log('[Session API] Received body:', JSON.stringify(body));
 
     // Get client IP
     const forwarded = request.headers.get('x-forwarded-for');
@@ -14,20 +15,27 @@ export async function POST(request: NextRequest) {
 
     // Forward to backend API
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_API || 'http://localhost:3001';
+    console.log('[Session API] Forwarding to:', `${backendUrl}/api/v1/analytics/session`);
+
+    const payload = {
+      ...body,
+      ipAddress: ip,
+    };
+    console.log('[Session API] Payload:', JSON.stringify(payload));
+
     const response = await fetch(`${backendUrl}/api/v1/analytics/session`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-Forwarded-For': ip,
       },
-      body: JSON.stringify({
-        ...body,
-        ipAddress: ip,
-      }),
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
-      throw new Error('Backend request failed');
+      const errorText = await response.text();
+      console.error('Backend response:', response.status, errorText);
+      throw new Error(`Backend request failed: ${response.status} - ${errorText}`);
     }
 
     const data = await response.json();

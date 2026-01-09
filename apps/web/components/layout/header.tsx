@@ -2,10 +2,9 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Container } from '@/components/ui/container';
 import { WhatsAppButton } from '@/components/whatsapp-button';
 
 const navigation = [
@@ -20,30 +19,35 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-beige-light bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <Container>
-        <div className="flex h-20 items-center justify-between">
+    <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200">
+      <div className="container mx-auto px-4">
+        {/* Mobile & Desktop Layout */}
+        <div className="flex items-center justify-between h-20 lg:h-24">
+
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="flex flex-col">
-              <span className="text-2xl font-script text-sage">Angela</span>
-              <span className="text-xs text-gray-600 -mt-1">
-                Spa & Estética
-              </span>
+          <Link href="/" className="flex-shrink-0">
+            <div className="relative w-44 h-14 sm:w-48 sm:h-16 md:w-52 md:h-16 lg:w-56 lg:h-18">
+              <Image
+                src="/images/logos/logo-secondary-transparent.png"
+                alt="Angela Spa & Estética"
+                fill
+                className="object-contain object-left"
+                priority
+              />
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center gap-8">
             {navigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'text-sm font-medium transition-colors hover:text-sage',
+                  'text-sm font-medium transition-colors hover:text-sage relative',
                   pathname === item.href
-                    ? 'text-sage font-semibold'
-                    : 'text-gray-600'
+                    ? 'text-sage after:absolute after:bottom-[-8px] after:left-0 after:right-0 after:h-0.5 after:bg-sage'
+                    : 'text-gray-700'
                 )}
               >
                 {item.name}
@@ -51,80 +55,58 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex">
+          {/* Desktop CTA Button */}
+          <div className="hidden lg:flex">
             <WhatsAppButton size="default">
               Agendar Consulta
             </WhatsAppButton>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile Menu Button */}
           <button
             type="button"
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-sage hover:bg-sage/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sage"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 text-gray-700 hover:text-sage hover:bg-sage/10 rounded-md transition-colors"
+            aria-label="Menu"
           >
-            <span className="sr-only">Abrir menu</span>
             {mobileMenuOpen ? (
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
           </button>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-beige-light">
-            <nav className="flex flex-col space-y-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    'text-base font-medium transition-colors hover:text-sage px-2 py-2',
-                    pathname === item.href
-                      ? 'text-sage font-semibold bg-sage/5 rounded-md'
-                      : 'text-gray-600'
-                  )}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="pt-2">
-                <WhatsAppButton className="w-full">
-                  Agendar Consulta
-                </WhatsAppButton>
-              </div>
-            </nav>
+          <div className="lg:hidden border-t border-gray-200 py-4 space-y-4">
+            {navigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={cn(
+                  'block px-4 py-2 text-base font-medium rounded-md transition-colors',
+                  pathname === item.href
+                    ? 'text-sage bg-sage/10'
+                    : 'text-gray-700 hover:text-sage hover:bg-sage/5'
+                )}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <div className="px-4 pt-4">
+              <WhatsAppButton size="default" className="w-full">
+                Agendar Consulta
+              </WhatsAppButton>
+            </div>
           </div>
         )}
-      </Container>
+      </div>
     </header>
   );
 }
