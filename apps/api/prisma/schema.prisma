@@ -1,0 +1,207 @@
+// This is your Prisma schema file
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Sessions table - visitor sessions
+model Session {
+  id                String       @id @default(uuid()) @db.Uuid
+  sessionId         String       @unique @map("session_id") @db.VarChar(64)
+  ipAddress         String       @map("ip_address") @db.Inet
+  userAgent         String?      @map("user_agent") @db.Text
+  referrer          String?      @db.Text
+  utmSource         String?      @map("utm_source") @db.VarChar(100)
+  utmMedium         String?      @map("utm_medium") @db.VarChar(100)
+  utmCampaign       String?      @map("utm_campaign") @db.VarChar(100)
+  utmContent        String?      @map("utm_content") @db.VarChar(100)
+  utmTerm           String?      @map("utm_term") @db.VarChar(100)
+  landingPage       String       @map("landing_page") @db.VarChar(255)
+  abVariantId       String?      @map("ab_variant_id") @db.Uuid
+  deviceType        String?      @map("device_type") @db.VarChar(20)
+  browser           String?      @db.VarChar(50)
+  os                String?      @db.VarChar(50)
+  country           String?      @db.VarChar(2)
+  city              String?      @db.VarChar(100)
+  createdAt         DateTime     @default(now()) @map("created_at") @db.Timestamptz
+  lastActivityAt    DateTime     @default(now()) @map("last_activity_at") @db.Timestamptz
+  converted         Boolean      @default(false)
+  conversionAt      DateTime?    @map("conversion_at") @db.Timestamptz
+
+  // Relations
+  events            Event[]
+  conversions       Conversion[]
+  abVariant         AbVariant?   @relation(fields: [abVariantId], references: [id])
+
+  @@index([sessionId])
+  @@index([createdAt])
+  @@index([landingPage])
+  @@index([abVariantId])
+  @@map("sessions")
+}
+
+// Events table - all user interactions
+model Event {
+  id                BigInt       @id @default(autoincrement())
+  sessionId         String       @map("session_id") @db.Uuid
+  eventType         String       @map("event_type") @db.VarChar(50)
+  eventName         String?      @map("event_name") @db.VarChar(100)
+  eventData         Json?        @map("event_data") @db.JsonB
+  elementId         String?      @map("element_id") @db.VarChar(100)
+  elementText       String?      @map("element_text") @db.Text
+  pagePath          String       @map("page_path") @db.VarChar(255)
+  timestamp         DateTime     @default(now()) @db.Timestamptz
+
+  // Relations
+  session           Session      @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  conversions       Conversion[]
+
+  @@index([sessionId])
+  @@index([eventType])
+  @@index([timestamp])
+  @@map("events")
+}
+
+// Conversions table - WhatsApp clicks
+model Conversion {
+  id                BigInt       @id @default(autoincrement())
+  sessionId         String       @map("session_id") @db.Uuid
+  eventId           BigInt       @map("event_id")
+  conversionType    String       @default("whatsapp_click") @map("conversion_type") @db.VarChar(50)
+  pagePath          String       @map("page_path") @db.VarChar(255)
+  serviceInterest   String?      @map("service_interest") @db.VarChar(100)
+  timestamp         DateTime     @default(now()) @db.Timestamptz
+
+  // Relations
+  session           Session      @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  event             Event        @relation(fields: [eventId], references: [id])
+
+  @@index([sessionId])
+  @@index([timestamp])
+  @@map("conversions")
+}
+
+// A/B Tests table
+model AbTest {
+  id                String       @id @default(uuid()) @db.Uuid
+  name              String       @db.VarChar(100)
+  description       String?      @db.Text
+  pagePath          String       @map("page_path") @db.VarChar(255)
+  status            String       @default("draft") @db.VarChar(20)
+  trafficAllocation Decimal      @default(1.00) @map("traffic_allocation") @db.Decimal(3, 2)
+  startDate         DateTime?    @map("start_date") @db.Timestamptz
+  endDate           DateTime?    @map("end_date") @db.Timestamptz
+  winnerVariantId   String?      @map("winner_variant_id") @db.Uuid
+  createdAt         DateTime     @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt         DateTime     @updatedAt @map("updated_at") @db.Timestamptz
+
+  // Relations
+  variants          AbVariant[]
+  results           AbResult[]
+
+  @@index([pagePath])
+  @@index([status])
+  @@map("ab_tests")
+}
+
+// A/B Test Variants
+model AbVariant {
+  id                String       @id @default(uuid()) @db.Uuid
+  abTestId          String       @map("ab_test_id") @db.Uuid
+  name              String       @db.VarChar(100)
+  isControl         Boolean      @default(false) @map("is_control")
+  trafficWeight     Decimal      @default(0.50) @map("traffic_weight") @db.Decimal(3, 2)
+  config            Json         @db.JsonB
+  createdAt         DateTime     @default(now()) @map("created_at") @db.Timestamptz
+
+  // Relations
+  abTest            AbTest       @relation(fields: [abTestId], references: [id], onDelete: Cascade)
+  sessions          Session[]
+  results           AbResult[]
+
+  @@index([abTestId])
+  @@map("ab_variants")
+}
+
+// A/B Test Results (aggregated)
+model AbResult {
+  id                String       @id @default(uuid()) @db.Uuid
+  abTestId          String       @map("ab_test_id") @db.Uuid
+  variantId         String       @map("variant_id") @db.Uuid
+  date              DateTime     @db.Date
+  sessionsCount     Int          @default(0) @map("sessions_count")
+  conversionsCount  Int          @default(0) @map("conversions_count")
+  conversionRate    Decimal?     @map("conversion_rate") @db.Decimal(5, 4)
+  avgTimeOnPage     Int?         @map("avg_time_on_page") // in seconds
+  avgScrollDepth    Decimal?     @map("avg_scroll_depth") @db.Decimal(5, 2)
+  updatedAt         DateTime     @updatedAt @map("updated_at") @db.Timestamptz
+
+  // Relations
+  abTest            AbTest       @relation(fields: [abTestId], references: [id], onDelete: Cascade)
+  variant           AbVariant    @relation(fields: [variantId], references: [id], onDelete: Cascade)
+
+  @@unique([abTestId, variantId, date])
+  @@index([abTestId, date])
+  @@map("ab_results")
+}
+
+// Landing Page Content
+model PageContent {
+  id                String       @id @default(uuid()) @db.Uuid
+  pagePath          String       @unique @map("page_path") @db.VarChar(255)
+  content           Json         @db.JsonB
+  seoTitle          String?      @map("seo_title") @db.VarChar(255)
+  seoDescription    String?      @map("seo_description") @db.Text
+  seoKeywords       String[]     @map("seo_keywords")
+  ogImage           String?      @map("og_image") @db.VarChar(255)
+  published         Boolean      @default(true)
+  version           Int          @default(1)
+  createdAt         DateTime     @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt         DateTime     @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@index([pagePath])
+  @@map("page_content")
+}
+
+// Services/Pricing
+model Service {
+  id                String       @id @default(uuid()) @db.Uuid
+  name              String       @db.VarChar(100)
+  slug              String       @unique @db.VarChar(100)
+  category          String       @db.VarChar(50)
+  description       String?      @db.Text
+  shortDescription  String?      @map("short_description") @db.Text
+  priceFrom         Decimal?     @map("price_from") @db.Decimal(10, 2)
+  priceTo           Decimal?     @map("price_to") @db.Decimal(10, 2)
+  priceDisplay      String?      @map("price_display") @db.VarChar(50)
+  showPrice         Boolean      @default(true) @map("show_price")
+  durationMinutes   Int?         @map("duration_minutes")
+  imageUrl          String?      @map("image_url") @db.VarChar(255)
+  benefits          String[]
+  orderIndex        Int          @default(0) @map("order_index")
+  active            Boolean      @default(true)
+  createdAt         DateTime     @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt         DateTime     @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@index([category])
+  @@index([slug])
+  @@map("services")
+}
+
+// Admin Users (basic auth)
+model AdminUser {
+  id                String       @id @default(uuid()) @db.Uuid
+  email             String       @unique @db.VarChar(255)
+  passwordHash      String       @map("password_hash") @db.VarChar(255)
+  name              String?      @db.VarChar(100)
+  role              String       @default("admin") @db.VarChar(20)
+  lastLoginAt       DateTime?    @map("last_login_at") @db.Timestamptz
+  createdAt         DateTime     @default(now()) @map("created_at") @db.Timestamptz
+
+  @@index([email])
+  @@map("admin_users")
+}
