@@ -105,7 +105,7 @@ export function Contact() {
                     <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sage/10 flex items-center justify-center text-sage">
                       {info.icon}
                     </div>
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 pt-1">
                       <div className="text-sm font-semibold text-gray-900 mb-2">
                         {info.title}
                       </div>
