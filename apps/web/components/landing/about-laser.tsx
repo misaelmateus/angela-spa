@@ -6,7 +6,7 @@ const credentials = [
   'Mais de 40 Anos de Experiência',
   'Tecnologia Hakon 4D de Última Geração',
   'Profissionais Certificados e Especializados',
-  'Mais de 5.000 Clientes Satisfeitas',
+  'Mais de 1.000 Clientes Satisfeitas',
   'Atendimento 100% Personalizado',
   'Protocolos de Segurança Rigorosos',
 ];
@@ -30,7 +30,7 @@ export function AboutLaser() {
           {/* Floating Badge */}
           <div className="absolute -bottom-4 -right-4 lg:-bottom-6 lg:-right-6 bg-white rounded-2xl shadow-2xl p-4 lg:p-6 max-w-[160px] lg:max-w-[200px] transition-transform hover:scale-105 duration-300">
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-serif font-bold text-sage mb-1 lg:mb-2">5000+</div>
+              <div className="text-3xl lg:text-4xl font-serif font-bold text-sage mb-1 lg:mb-2">1000+</div>
               <div className="text-xs lg:text-sm text-gray-600 font-medium">
                 Clientes Satisfeitas
               </div>
