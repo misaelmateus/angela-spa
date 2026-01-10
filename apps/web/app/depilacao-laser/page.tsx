@@ -242,23 +242,28 @@ export default function DeepilacaoLaser() {
       {/* 5. Urgency Section - Countdown + Escassez - A/B Testável */}
       <UrgencySection />
 
-      {/* 5. FAQ - Compact & Streamlined */}
+      {/* 5. FAQ - Clean & Well Spaced */}
       <Section background="white" className="py-12 lg:py-16">
         <SectionHeader
           title="Perguntas Frequentes"
           subtitle="Tire suas dúvidas sobre depilação a laser"
         />
 
-        <div className="max-w-3xl mx-auto space-y-4 lg:space-y-5">
+        <div className="max-w-3xl mx-auto space-y-5 lg:space-y-6">
           {faqs.map((faq, index) => (
-            <Card key={index} className="border-beige-light hover:border-sage/30 transition-colors">
-              <CardContent className="p-5 lg:p-7">
-                <h3 className="text-base lg:text-lg font-semibold text-sage mb-3 lg:mb-4 leading-relaxed">
+            <div
+              key={index}
+              className="bg-white border border-beige-light rounded-xl hover:border-sage/30 transition-all hover:shadow-md"
+            >
+              <div className="p-6 lg:p-8">
+                <h3 className="text-lg lg:text-xl font-semibold text-sage mb-4 lg:mb-5 leading-normal">
                   {faq.question}
                 </h3>
-                <p className="text-sm lg:text-base text-gray-600 leading-relaxed">{faq.answer}</p>
-              </CardContent>
-            </Card>
+                <p className="text-base lg:text-lg text-gray-600 leading-relaxed">
+                  {faq.answer}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
       </Section>
