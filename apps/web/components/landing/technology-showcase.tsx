@@ -73,7 +73,7 @@ export function TechnologyShowcase() {
         <Card className="overflow-hidden border-sage/20">
           <div className="relative h-64 lg:h-96">
             <Image
-              src="/images/equipment/hakon-4d.jpg"
+              src="/images/equipment/laser_foto.jpg"
               alt="Equipamento Hakon 4D - Depilação a Laser"
               fill
               className="object-cover"
