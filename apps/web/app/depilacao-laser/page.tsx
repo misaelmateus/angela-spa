@@ -1,6 +1,7 @@
 import { SiteLayout } from '@/components/layout/site-layout';
 import { Hero } from '@/components/landing/hero';
 import { TechnologyShowcase } from '@/components/landing/technology-showcase';
+import { AboutLaser } from '@/components/landing/about-laser';
 import { PricingSection } from '@/components/landing/pricing-section';
 import { UrgencySection } from '@/components/landing/urgency-section';
 import { FinalCTA } from '@/components/landing/final-cta';
@@ -235,7 +236,10 @@ export default function DeepilacaoLaser() {
       {/* 2. Hakon 4D Technology Showcase - DESTAQUE */}
       <TechnologyShowcase />
 
-      {/* 3. Strategic Pricing Section - A/B Testável */}
+      {/* 3. Sobre Nós - Build Trust */}
+      <AboutLaser />
+
+      {/* 4. Strategic Pricing Section - A/B Testável */}
       <PricingSection />
 
       {/* 4. Urgency Section - Countdown + Escassez - A/B Testável */}

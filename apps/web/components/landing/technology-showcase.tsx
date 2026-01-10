@@ -89,54 +89,51 @@ export function TechnologyShowcase() {
         </Card>
       </div>
 
-      {/* 4 Wavelengths Visualization */}
-      <div className="mb-16">
+      {/* 4 Wavelengths Visualization - Compact Mobile Layout */}
+      <div className="mb-12 lg:mb-16">
         <h3 className="text-2xl lg:text-3xl font-serif font-bold text-center mb-3">
           4 Comprimentos de Onda Simultâneos
         </h3>
-        <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+        <p className="text-center text-gray-600 mb-6 lg:mb-8 max-w-2xl mx-auto text-sm lg:text-base">
           Cada comprimento de onda atua em um tipo específico de pelo, garantindo eficácia para todos os tipos de pele e pelos.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        {/* Mobile: 2x2 Grid, Desktop: 1x4 Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6">
           {wavelengths.map((wave, index) => (
             <Card
               key={index}
-              className="border-2 border-transparent hover:border-sage/40 transition-all group"
+              className="border-2 border-transparent hover:border-sage/40 transition-all"
             >
-              <CardContent className="p-6 text-center">
-                <div className="text-4xl mb-3">{wave.icon}</div>
+              <CardContent className="p-4 lg:p-6 text-center">
+                <div className="text-3xl lg:text-4xl mb-2 lg:mb-3">{wave.icon}</div>
                 <div
-                  className={`inline-block px-4 py-2 rounded-full bg-gradient-to-r ${wave.color} text-white font-bold text-lg mb-3`}
+                  className={`inline-block px-3 py-1.5 lg:px-4 lg:py-2 rounded-full bg-gradient-to-r ${wave.color} text-white font-bold text-sm lg:text-lg mb-2 lg:mb-3`}
                 >
                   {wave.nm}
                 </div>
-                <h4 className="font-semibold text-sage mb-2">{wave.name}</h4>
-                <p className="text-sm text-gray-600">{wave.target}</p>
+                <h4 className="font-semibold text-sage mb-1 lg:mb-2 text-sm lg:text-base">{wave.name}</h4>
+                <p className="text-xs lg:text-sm text-gray-600">{wave.target}</p>
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
 
-      {/* Features Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+      {/* Features Grid - Compact Mobile Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
         {features.map((feature, index) => (
-          <Card key={index} className="border-beige-light hover:shadow-lg transition-shadow">
-            <CardContent className="p-6 lg:p-8">
-              <div className="flex items-start gap-4">
-                <div className="text-4xl flex-shrink-0">{feature.icon}</div>
-                <div>
-                  <h4 className="text-lg font-semibold text-sage mb-2">
-                    {feature.title}
-                  </h4>
-                  <p className="text-gray-600 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <div key={index} className="flex items-start gap-3 lg:gap-4 p-4 lg:p-6 rounded-xl border border-beige-light bg-white hover:border-sage/40 hover:shadow-md transition-all">
+            <div className="text-3xl lg:text-4xl flex-shrink-0">{feature.icon}</div>
+            <div>
+              <h4 className="text-base lg:text-lg font-semibold text-sage mb-1.5 lg:mb-2">
+                {feature.title}
+              </h4>
+              <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
+                {feature.description}
+              </p>
+            </div>
+          </div>
         ))}
       </div>
 
