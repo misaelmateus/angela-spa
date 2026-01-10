@@ -30,7 +30,7 @@ const services: Service[] = [
       'Modelagem corporal com equipamentos de última geração. Resultados visíveis e duradouros.',
     icon: '💆',
     href: '/tratamentos-corporais',
-    image: '/images/services/body.jpg',
+    image: '/images/services/body.png',
   },
   {
     name: 'Massagens',
@@ -38,7 +38,7 @@ const services: Service[] = [
       'Relaxamento e bem-estar em um ambiente tranquilo. Técnicas terapêuticas especializadas.',
     icon: '🌿',
     href: '/massagens',
-    image: '/images/services/massage.jpg',
+    image: '/images/services/massage.png',
   },
   {
     name: 'Tratamentos Faciais',
@@ -120,7 +120,7 @@ export function ServicesOverview() {
             >
               <Card className="h-full transition-all duration-500 active:scale-95 border-beige-light overflow-hidden">
                 {/* Service Image */}
-                <div className="relative h-44 overflow-hidden">
+                <div className="relative h-64 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 z-10" />
                   <Image
                     src={service.image}
