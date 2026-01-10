@@ -233,11 +233,11 @@ export default function DeepilacaoLaser() {
       {/* 2. Hakon 4D Technology Showcase - DESTAQUE */}
       <TechnologyShowcase />
 
-      {/* 3. Sobre Nós - Build Trust */}
-      <AboutLaser />
-
-      {/* 4. Promoção 3 Sessões Gratuitas */}
+      {/* 3. Promoção 3 Sessões Gratuitas */}
       <FreeSessionsPromo />
+
+      {/* 4. Sobre Nós - Build Trust */}
+      <AboutLaser />
 
       {/* 5. Urgency Section - Countdown + Escassez - A/B Testável */}
       <UrgencySection />

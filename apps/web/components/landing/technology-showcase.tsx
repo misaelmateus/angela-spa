@@ -136,20 +136,6 @@ export function TechnologyShowcase() {
           </div>
         ))}
       </div>
-
-      {/* CTA */}
-      <div className="text-center mt-12">
-        <p className="text-lg text-gray-700 mb-6">
-          Quer conhecer o Hakon 4D pessoalmente e ver os resultados?
-        </p>
-        <WhatsAppButton
-          size="lg"
-          message="Olá! Quero conhecer a tecnologia Hakon 4D e agendar uma avaliação gratuita para depilação a laser."
-          serviceInterest="Depilação a Laser - Hakon 4D"
-        >
-          Agendar Avaliação Gratuita
-        </WhatsAppButton>
-      </div>
     </Section>
   );
 }
