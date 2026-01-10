@@ -99,22 +99,24 @@ export function Contact() {
         <div className="space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {contactInfo.map((info, index) => (
-              <Card key={index} className="border-2 border-sage/20 shadow-lg hover:shadow-xl transition-all bg-white">
-                <CardContent className="p-8 md:p-10">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sage/10 flex items-center justify-center text-sage">
-                      {info.icon}
-                    </div>
-                    <div className="flex-1 min-w-0 pt-1">
-                      <div className="text-sm font-semibold text-gray-900 mb-2">
-                        {info.title}
+              <Card key={index} className="border-2 border-sage/20 shadow-lg hover:shadow-xl transition-all bg-white overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="p-6 md:p-8">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sage/10 flex items-center justify-center text-sage">
+                        {info.icon}
                       </div>
+                      <h3 className="text-base font-semibold text-gray-900">
+                        {info.title}
+                      </h3>
+                    </div>
+                    <div className="pl-0">
                       {info.link ? (
                         <a
                           href={info.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-sage hover:text-sage/80 transition-colors whitespace-pre-line leading-relaxed"
+                          className="text-sm text-sage hover:text-sage/80 transition-colors whitespace-pre-line leading-relaxed block"
                         >
                           {info.value}
                         </a>
@@ -156,7 +158,7 @@ export function Contact() {
         <div className="relative">
           <Card className="border-beige-light overflow-hidden h-full min-h-[400px]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31316477.533162016!2d-84.18194849288246!3d-16.63619187839765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef13a854ce309%3A0x7125e1a08101d3!2sAngela%20Spa%20%26%20Est%C3%A9tica!5e0!3m2!1spt-BR!2sbr!4v1767979481098!5m2!1spt-BR!2sbr"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15285.728292372678!2d-49.28372094851976!3d-16.70527964512096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef13a854ce309%3A0x7125e1a08101d3!2sAngela%20Spa%20%26%20Est%C3%A9tica!5e0!3m2!1spt-BR!2sbr!4v1768062162152!5m2!1spt-BR!2sbr"
               width="100%"
               height="450"
               style={{ border: 0, minHeight: '400px', height: '100%' }}
