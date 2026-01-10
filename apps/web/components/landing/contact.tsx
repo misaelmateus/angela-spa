@@ -133,23 +133,25 @@ export function Contact() {
           </div>
 
           {/* CTA */}
-          <Card className="bg-gradient-to-br from-sage to-sage/80 border-none text-white">
-            <CardContent className="p-8 md:p-10">
-              <h3 className="text-2xl font-serif font-bold mb-4">
-                Pronta para Transformar sua Beleza?
-              </h3>
-              <p className="text-white/90 mb-6 leading-relaxed">
-                Agende uma avaliação gratuita e conheça nossos tratamentos
-                personalizados.
-              </p>
-              <WhatsAppButton
-                variant="beige"
-                size="lg"
-                className="w-full sm:w-auto"
-                message="Olá! Gostaria de agendar uma avaliação gratuita."
-              >
-                Agendar Avaliação Gratuita
-              </WhatsAppButton>
+          <Card className="bg-gradient-to-br from-sage to-sage/80 border-none text-white overflow-hidden">
+            <CardContent className="p-0">
+              <div className="p-6 md:p-8">
+                <h3 className="text-2xl font-serif font-bold mb-4">
+                  Pronta para Transformar sua Beleza?
+                </h3>
+                <p className="text-white/90 mb-6 leading-relaxed">
+                  Agende uma avaliação gratuita e conheça nossos tratamentos
+                  personalizados.
+                </p>
+                <WhatsAppButton
+                  variant="beige"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  message="Olá! Gostaria de agendar uma avaliação gratuita."
+                >
+                  Agendar Avaliação Gratuita
+                </WhatsAppButton>
+              </div>
             </CardContent>
           </Card>
         </div>
