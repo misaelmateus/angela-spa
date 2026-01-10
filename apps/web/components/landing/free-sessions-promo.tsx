@@ -30,43 +30,29 @@ export function FreeSessionsPromo() {
               </h2>
 
               {/* Subheadline */}
-              <p className="text-lg lg:text-xl text-gray-700 mb-8 leading-relaxed max-w-3xl mx-auto">
+              <p className="text-lg lg:text-xl text-gray-700 mb-6 leading-relaxed max-w-3xl mx-auto">
                 Conheça a tecnologia <strong>Hakon 4D</strong> sem compromisso.
                 Experimente os resultados e sinta a diferença de uma depilação definitiva.
               </p>
 
-              {/* Benefits Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 mb-10 text-left">
-                {[
-                  {
-                    icon: '✨',
-                    title: 'Sem Compromisso',
-                    description: 'Experimente grátis, sem obrigação de compra',
-                  },
-                  {
-                    icon: '🎯',
-                    title: 'Tecnologia Hakon 4D',
-                    description: 'Equipamento de última geração com 4 comprimentos de onda',
-                  },
-                  {
-                    icon: '👩‍⚕️',
-                    title: 'Profissionais Certificados',
-                    description: 'Equipe especializada com 40 anos de experiência',
-                  },
-                ].map((benefit, index) => (
-                  <div
-                    key={index}
-                    className="bg-white rounded-xl p-5 lg:p-6 border-2 border-beige hover:border-sage transition-all hover:shadow-md"
-                  >
-                    <div className="text-3xl lg:text-4xl mb-3">{benefit.icon}</div>
-                    <h3 className="font-semibold text-sage mb-2 text-base lg:text-lg">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
-                      {benefit.description}
-                    </p>
-                  </div>
-                ))}
+              {/* Benefits List - Compact */}
+              <div className="bg-white/80 rounded-xl p-5 lg:p-6 mb-8 max-w-2xl mx-auto border border-beige">
+                <div className="space-y-3">
+                  {[
+                    { icon: '✨', text: 'Experimente grátis, sem obrigação de compra' },
+                    { icon: '🎯', text: 'Tecnologia Hakon 4D com 4 comprimentos de onda' },
+                    { icon: '👩‍⚕️', text: 'Equipe especializada com 40 anos de experiência' },
+                  ].map((benefit, index) => (
+                    <div key={index} className="flex items-center gap-3 text-left">
+                      <div className="flex-shrink-0 w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-sage flex items-center justify-center">
+                        <span className="text-lg lg:text-xl">{benefit.icon}</span>
+                      </div>
+                      <p className="text-sm lg:text-base text-gray-700 leading-relaxed">
+                        {benefit.text}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* CTA Button */}

@@ -249,11 +249,11 @@ export default function DeepilacaoLaser() {
           subtitle="Tire suas dúvidas sobre depilação a laser"
         />
 
-        <div className="max-w-3xl mx-auto space-y-3 lg:space-y-4">
+        <div className="max-w-3xl mx-auto space-y-4 lg:space-y-5">
           {faqs.map((faq, index) => (
             <Card key={index} className="border-beige-light hover:border-sage/30 transition-colors">
-              <CardContent className="p-4 lg:p-6">
-                <h3 className="text-base lg:text-lg font-semibold text-sage mb-2 lg:mb-3">
+              <CardContent className="p-5 lg:p-7">
+                <h3 className="text-base lg:text-lg font-semibold text-sage mb-3 lg:mb-4 leading-relaxed">
                   {faq.question}
                 </h3>
                 <p className="text-sm lg:text-base text-gray-600 leading-relaxed">{faq.answer}</p>
