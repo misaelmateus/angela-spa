@@ -1,12 +1,14 @@
 import { SiteLayout } from '@/components/layout/site-layout';
 import { Hero } from '@/components/landing/hero';
+import { TechnologyShowcase } from '@/components/landing/technology-showcase';
+import { PricingSection } from '@/components/landing/pricing-section';
+import { UrgencySection } from '@/components/landing/urgency-section';
+import { FinalCTA } from '@/components/landing/final-cta';
 import { Benefits } from '@/components/landing/benefits';
 import { HowItWorks } from '@/components/landing/how-it-works';
 import { Contact } from '@/components/landing/contact';
 import { Section, SectionHeader } from '@/components/ui/section';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { WhatsAppButton } from '@/components/whatsapp-button';
+import { Card, CardContent } from '@/components/ui/card';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -218,73 +220,58 @@ const faqs = [
 export default function DeepilacaoLaser() {
   return (
     <SiteLayout>
+      {/* 1. Hero Section */}
       <Hero
-        title="Depilação a Laser: Pele Lisa e Livre de Pelos"
-        subtitle="Tecnologia avançada para resultados duradouros. Diga adeus às depilações frequentes e aos pelos encravados."
+        title="Depilação a Laser com Tecnologia Hakon 4D"
+        subtitle="4 comprimentos de onda + sistema de resfriamento -12°C. Pele lisa e livre de pelos de forma definitiva."
         ctaText="Agendar Avaliação Gratuita"
-        ctaMessage="Olá! Gostaria de saber mais sobre depilação a laser e agendar uma avaliação gratuita."
+        ctaMessage="Olá! Gostaria de saber mais sobre depilação a laser com Hakon 4D e agendar uma avaliação gratuita."
         serviceInterest="Depilação a Laser"
         backgroundImage="/images/hero/laser-hero.jpg"
         imageAlt="Depilação a Laser - Angela Spa & Estética"
         overlay="none"
       />
 
+      {/* 2. Hakon 4D Technology Showcase - DESTAQUE */}
+      <TechnologyShowcase />
+
+      {/* 3. Strategic Pricing Section - A/B Testável */}
+      <PricingSection />
+
+      {/* 4. Urgency Section - Countdown + Escassez - A/B Testável */}
+      <UrgencySection />
+
+      {/* 5. Benefits */}
       <Benefits
         title="Por Que Escolher a Depilação a Laser?"
         subtitle="Benefícios que vão além da estética"
         benefits={benefits}
       />
 
-      <HowItWorks
-        title="Como Funciona o Tratamento"
-        subtitle="Um processo simples e eficaz para resultados definitivos"
-        steps={steps}
-      />
-
-      {/* Treatment Areas */}
-      <Section background="beige-light">
+      {/* 6. Treatment Areas - Simplified */}
+      <Section background="white">
         <SectionHeader
           title="Áreas de Tratamento"
           subtitle="Depilação a laser para todas as áreas do corpo"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4">
           {treatmentAreas.map((area, index) => (
-            <Card key={index} className="border-beige hover:border-sage transition-colors">
-              <CardHeader>
-                <CardTitle className="text-lg">{area.name}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2 text-sm text-gray-600">
-                  <div className="flex items-center gap-2">
-                    <svg
-                      className="w-4 h-4 text-sage"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
+            <Card key={index} className="border-beige-light hover:border-sage transition-colors">
+              <CardContent className="p-4 lg:p-5">
+                <h3 className="text-base lg:text-lg font-semibold text-sage mb-2">
+                  {area.name}
+                </h3>
+                <div className="space-y-1 text-xs lg:text-sm text-gray-600">
+                  <div className="flex items-center gap-1.5">
+                    <svg className="w-3 h-3 lg:w-4 lg:h-4 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <span>{area.duration}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <svg
-                      className="w-4 h-4 text-sage"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                      />
+                  <div className="flex items-center gap-1.5">
+                    <svg className="w-3 h-3 lg:w-4 lg:h-4 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                     </svg>
                     <span>{area.sessions}</span>
                   </div>
@@ -293,19 +280,16 @@ export default function DeepilacaoLaser() {
             </Card>
           ))}
         </div>
-
-        <div className="text-center mt-8">
-          <WhatsAppButton
-            size="lg"
-            message="Olá! Gostaria de saber os valores da depilação a laser e agendar uma avaliação."
-            serviceInterest="Depilação a Laser"
-          >
-            Solicitar Orçamento
-          </WhatsAppButton>
-        </div>
       </Section>
 
-      {/* FAQ */}
+      {/* 7. How It Works */}
+      <HowItWorks
+        title="Como Funciona o Tratamento"
+        subtitle="Um processo simples e eficaz para resultados definitivos"
+        steps={steps}
+      />
+
+      {/* 8. FAQ */}
       <Section background="white">
         <SectionHeader
           title="Perguntas Frequentes"
@@ -326,6 +310,10 @@ export default function DeepilacaoLaser() {
         </div>
       </Section>
 
+      {/* 9. Final CTA - Strong Conversion */}
+      <FinalCTA />
+
+      {/* 10. Contact */}
       <Contact />
     </SiteLayout>
   );
