@@ -9,6 +9,9 @@ import { Section, SectionHeader } from '@/components/ui/section';
 import { Card, CardContent } from '@/components/ui/card';
 import type { Metadata } from 'next';
 
+// Force dynamic rendering for A/B testing with useSearchParams
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Depilação a Laser em Goiânia | Angela Spa & Estética',
   description:
