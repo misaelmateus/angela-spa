@@ -2,7 +2,7 @@ import { SiteLayout } from '@/components/layout/site-layout';
 import { Hero } from '@/components/landing/hero';
 import { TechnologyShowcase } from '@/components/landing/technology-showcase';
 import { AboutLaser } from '@/components/landing/about-laser';
-import { PricingSection } from '@/components/landing/pricing-section';
+import { FreeSessionsPromo } from '@/components/landing/free-sessions-promo';
 import { UrgencySection } from '@/components/landing/urgency-section';
 import { Contact } from '@/components/landing/contact';
 import { Section, SectionHeader } from '@/components/ui/section';
@@ -236,10 +236,10 @@ export default function DeepilacaoLaser() {
       {/* 3. Sobre Nós - Build Trust */}
       <AboutLaser />
 
-      {/* 4. Strategic Pricing Section - A/B Testável */}
-      <PricingSection />
+      {/* 4. Promoção 3 Sessões Gratuitas */}
+      <FreeSessionsPromo />
 
-      {/* 4. Urgency Section - Countdown + Escassez - A/B Testável */}
+      {/* 5. Urgency Section - Countdown + Escassez - A/B Testável */}
       <UrgencySection />
 
       {/* 5. FAQ - Compact & Streamlined */}
