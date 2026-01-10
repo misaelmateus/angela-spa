@@ -58,7 +58,7 @@ export function UrgencySection() {
   const time = timeLeft ? formatTime(timeLeft) : { hours: 0, minutes: 0, seconds: 0 };
 
   return (
-    <Section background="sage" className="py-12 lg:py-16">
+    <Section background="sage-light" className="py-12 lg:py-16">
       <div className="max-w-4xl mx-auto">
         <Card className="border-none shadow-2xl bg-white">
           <CardContent className="p-8 lg:p-12 text-center">
