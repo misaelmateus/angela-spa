@@ -35,6 +35,9 @@ export function useABTest(testId: string) {
   const [variant, setVariant] = useState<Variant | null>(null);
 
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return;
+
     const config = AB_TESTS[testId];
     if (!config) {
       console.warn(`AB test ${testId} not configured`);

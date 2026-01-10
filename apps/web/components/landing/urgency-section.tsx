@@ -14,9 +14,14 @@ export function UrgencySection() {
   const showUrgency = variant !== 'no-urgency';
 
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    if (!showUrgency) return;
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!showUrgency || !isMounted || typeof window === 'undefined') return;
 
     // Get or create countdown end time
     const storageKey = 'laser-countdown-end';
@@ -44,7 +49,7 @@ export function UrgencySection() {
     const interval = setInterval(updateTimer, 1000);
 
     return () => clearInterval(interval);
-  }, [showUrgency]);
+  }, [showUrgency, isMounted]);
 
   if (!showUrgency) return null;
 
